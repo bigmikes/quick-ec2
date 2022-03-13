@@ -29,6 +29,22 @@ The Terraform configuration uses the AWS credentials found in the `default` prof
 terraform apply -var="public_ssh_key_path=aws_key.pub" -var="profile=profile-2"
 ```
 
+If everything is successful, you will see an output that looks like the following. As you can see, the Terraform's output contains the public IPv4 address of the new VM:
+```bash
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+dev_ec2_public_ip_addr = "34.246.169.9"
+```
+
+At this point, you just need to SSH into your new EC2 instance using the private key:
+
+```bash
+ssh -i "aws_key" ec2-user@34.246.169.9
+[ec2-user@ip-10-0-1-104 ~]$
+```
+
 ## Reference Topology
 
 <p align="center">
